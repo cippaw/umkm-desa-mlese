@@ -51,7 +51,7 @@ async function protectPage() {
 }
 
 // Logika Inisialisasi Auth
-document.addEventListener('DOMContentLoaded', () => {
+function initAuth() {
     // Jalankan proteksi rute
     protectPage();
 
@@ -128,4 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAuth);
+} else {
+    initAuth();
+}
+

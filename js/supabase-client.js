@@ -10,7 +10,7 @@ let supabaseClient = null;
 // Deteksi apakah kredensial masih menggunakan nilai placeholder bawaan
 if (SUPABASE_URL.includes('YOUR_') || SUPABASE_ANON_KEY.includes('YOUR_')) {
     isDemoMode = true;
-    console.warn("DILON Desa Mlese: Menjalankan dalam 'Mode Demo (LocalStorage)' karena API Key Supabase belum diatur. Untuk menghubungkan ke database cloud nyata, silakan ubah kredensial di berkas 'js/supabase-client.js'.");
+    console.warn("DILAN Desa Mlese: Menjalankan dalam 'Mode Demo (LocalStorage)' karena API Key Supabase belum diatur. Untuk menghubungkan ke database cloud nyata, silakan ubah kredensial di berkas 'js/supabase-client.js'.");
 } else {
     try {
         if (typeof supabase !== 'undefined') {
@@ -358,3 +358,4 @@ if (isDemoMode) {
     }
     localStorage.setItem('mock_profiles', JSON.stringify(mockProfiles));
 }
+

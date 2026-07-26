@@ -1,4 +1,4 @@
--- DILON DESA MLESE - DATABASE SCHEMA FOR SUPABASE
+-- DILAN DESA MLESE - DATABASE SCHEMA FOR SUPABASE
 -- -------------------------------------------------------------
 -- Buka "SQL Editor" di dasbor Supabase Anda, tempel kode ini, lalu klik "Run".
 
@@ -55,3 +55,4 @@ ALTER TABLE public.profiles DISABLE ROW LEVEL SECURITY;
 ALTER TABLE public.umkm DISABLE ROW LEVEL SECURITY;
 ALTER TABLE public.products DISABLE ROW LEVEL SECURITY;
 ALTER TABLE public.articles DISABLE ROW LEVEL SECURITY;
+

@@ -1,7 +1,7 @@
 // Seller Dashboard Management Logic
 // -------------------------------------------------------------
 
-document.addEventListener('DOMContentLoaded', async () => {
+async function initDashboard() {
     const user = await window.mleseDB.getUser();
     if (!user) return; // auth.js will handle redirect
 
@@ -44,7 +44,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (page === 'tambah-artikel' && currentPath.includes('/dashboard')) {
         initDashboardAddArticle(user);
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDashboard);
+} else {
+    initDashboard();
+}
 
 // 1. Inisialisasi Halaman Utama Dasbor
 async function initDashboardHome(user) {
@@ -381,4 +387,5 @@ async function initDashboardAddArticle(user) {
         }
     });
 }
+
 

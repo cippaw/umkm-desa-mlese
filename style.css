@@ -1,5 +1,5 @@
 /* ==========================================
-   CSS DESIGN SYSTEM - DILON DESA MLESE
+   CSS DESIGN SYSTEM - DILAN DESA MLESE
    ========================================== */
 
 /* Google Fonts */
@@ -75,7 +75,7 @@ a {
     gap: 15px;
 }
 
-.logo-dilon {
+.logo-DILAN {
     border: 3px solid #000;
     padding: 4px 10px;
     border-radius: 4px;
@@ -85,7 +85,7 @@ a {
     letter-spacing: 1px;
 }
 
-.logo-dilon span.red {
+.logo-DILAN span.red {
     color: var(--primary-color);
 }
 
@@ -648,7 +648,7 @@ a {
 }
 
 /* Footer Left */
-.footer-logo-dilon {
+.footer-logo-DILAN {
     border: 3px solid #FFFFFF;
     padding: 4px 10px;
     border-radius: 4px;
@@ -661,7 +661,7 @@ a {
     margin-bottom: 5px;
 }
 
-.footer-logo-dilon span.red {
+.footer-logo-DILAN span.red {
     color: var(--primary-color);
 }
 
@@ -875,7 +875,7 @@ a {
         text-align: center;
     }
     
-    .footer-logo-dilon {
+    .footer-logo-DILAN {
         margin-left: auto;
         margin-right: auto;
     }
@@ -892,3 +892,4 @@ a {
         margin: 0 auto;
     }
 }
+

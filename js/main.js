@@ -1,7 +1,7 @@
 // Main Public Page Rendering Logic
 // -------------------------------------------------------------
 
-document.addEventListener('DOMContentLoaded', () => {
+function runInit() {
     const currentPath = window.location.pathname;
     const cleanPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
     const page = cleanPath.split('/').pop().replace('.html', '');
@@ -25,7 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (page === 'artikel') {
         initArticlesPage();
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runInit);
+} else {
+    runInit();
+}
 
 // 1. Logika Halaman Utama (index.html)
 async function initHomepage() {
@@ -325,3 +331,4 @@ async function initArticlesPage() {
         });
     }
 }
+

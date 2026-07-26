@@ -1,7 +1,7 @@
 // Admin Management Panel Logic
 // -------------------------------------------------------------
 
-document.addEventListener('DOMContentLoaded', async () => {
+async function initAdmin() {
     const user = await window.mleseDB.getUser();
     if (!user || user.profile.role !== 'admin') return; // auth.js will protect
 
@@ -29,7 +29,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (page === 'kelola-umkm' && currentPath.includes('/admin')) {
         initAdminManageUMKM();
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAdmin);
+} else {
+    initAdmin();
+}
 
 // 1. Dasbor Ringkasan Admin
 async function initAdminDashboard(user) {
@@ -197,3 +203,4 @@ window.handleDeleteUMKM = async (id) => {
         window.location.reload();
     }
 };
+
