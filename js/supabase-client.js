@@ -85,10 +85,12 @@ const LocalDB = {
         return {
             eq: (field, value) => {
                 let data = JSON.parse(localStorage.getItem(`mock_${table}`) || '[]');
-                if (table === 'umkm' && data.length === 0) {
-                    // Prepopulate static data
-                    data = window.productsData || [];
-                    localStorage.setItem('mock_umkm', JSON.stringify(data));
+                if (table === 'umkm') {
+                    const hasOldData = data.some(item => item.title && item.title.includes('Bu Siswo'));
+                    if (data.length === 0 || hasOldData) {
+                        data = window.productsData || [];
+                        localStorage.setItem('mock_umkm', JSON.stringify(data));
+                    }
                 }
                 return {
                     data: data.filter(item => item[field] == value),
@@ -97,9 +99,12 @@ const LocalDB = {
             },
             all: () => {
                 let data = JSON.parse(localStorage.getItem(`mock_${table}`) || '[]');
-                if (table === 'umkm' && data.length === 0) {
-                    data = window.productsData || [];
-                    localStorage.setItem('mock_umkm', JSON.stringify(data));
+                if (table === 'umkm') {
+                    const hasOldData = data.some(item => item.title && item.title.includes('Bu Siswo'));
+                    if (data.length === 0 || hasOldData) {
+                        data = window.productsData || [];
+                        localStorage.setItem('mock_umkm', JSON.stringify(data));
+                    }
                 }
                 return { data, error: null };
             }
