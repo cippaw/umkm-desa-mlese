@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!user) return; // auth.js will handle redirect
 
     const currentPath = window.location.pathname;
+    const page = currentPath.split('/').pop().replace('.html', '');
 
     // Load common header / user details
     const sellerHeaderName = document.getElementById('seller-header-name');
@@ -14,32 +15,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // A. LOGIKA UTAMA DASBOR (dashboard/index.html)
-    if (currentPath.includes('dashboard/index.html') || (currentPath.includes('dashboard/') && currentPath.endsWith('/'))) {
+    if ((page === 'index' || page === '' || page === 'dashboard') && currentPath.includes('/dashboard')) {
         initDashboardHome(user);
     }
 
     // B. LOGIKA KELOLA PROFIL (dashboard/profil.html)
-    if (currentPath.includes('dashboard/profil.html')) {
+    if (page === 'profil' && currentPath.includes('/dashboard')) {
         initDashboardProfile(user);
     }
 
     // C. LOGIKA KELOLA PRODUK (dashboard/produk.html)
-    if (currentPath.includes('dashboard/produk.html')) {
+    if (page === 'produk' && currentPath.includes('/dashboard')) {
         initDashboardProducts(user);
     }
 
     // D. LOGIKA TAMBAH PRODUK (dashboard/tambah-produk.html)
-    if (currentPath.includes('dashboard/tambah-produk.html')) {
+    if (page === 'tambah-produk' && currentPath.includes('/dashboard')) {
         initDashboardAddProduct(user);
     }
 
     // E. LOGIKA KELOLA ARTIKEL (dashboard/artikel.html))
-    if (currentPath.includes('dashboard/artikel.html')) {
+    if (page === 'artikel' && currentPath.includes('/dashboard')) {
         initDashboardArticles(user);
     }
 
     // F. LOGIKA TAMBAH ARTIKEL (dashboard/tambah-artikel.html)
-    if (currentPath.includes('dashboard/tambah-artikel.html')) {
+    if (page === 'tambah-artikel' && currentPath.includes('/dashboard')) {
         initDashboardAddArticle(user);
     }
 });

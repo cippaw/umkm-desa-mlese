@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!user || user.profile.role !== 'admin') return; // auth.js will protect
 
     const currentPath = window.location.pathname;
+    const page = currentPath.split('/').pop().replace('.html', '');
 
     // Load admin header profile name
     const adminHeaderName = document.getElementById('admin-header-name');
@@ -14,17 +15,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // A. LOGIKA UTAMA ANALITIK ADMIN (admin/index.html)
-    if (currentPath.includes('admin/index.html') || (currentPath.includes('admin/') && currentPath.endsWith('/'))) {
+    if ((page === 'index' || page === '' || page === 'admin') && currentPath.includes('/admin')) {
         initAdminDashboard(user);
     }
 
     // B. LOGIKA VERIFIKASI PENGAJUAN (admin/verifikasi.html)
-    if (currentPath.includes('admin/verifikasi.html')) {
+    if (page === 'verifikasi' && currentPath.includes('/admin')) {
         initAdminVerification();
     }
 
     // C. LOGIKA KELOLA SEMUA UMKM (admin/kelola-umkm.html)
-    if (currentPath.includes('admin/kelola-umkm.html')) {
+    if (page === 'kelola-umkm' && currentPath.includes('/admin')) {
         initAdminManageUMKM();
     }
 });

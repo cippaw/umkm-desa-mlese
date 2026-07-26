@@ -17,7 +17,7 @@ async function protectPage() {
     const user = await window.mleseDB.getUser();
 
     // 1. Rute Dasbor (Memerlukan Login)
-    if (currentPath.includes('/dashboard/')) {
+    if (currentPath.includes('/dashboard')) {
         if (!user) {
             window.location.href = prefix + 'login.html?redirect=' + encodeURIComponent(window.location.href);
             return;
@@ -25,7 +25,7 @@ async function protectPage() {
     }
 
     // 2. Rute Admin (Memerlukan Login dan Hak Akses Admin)
-    if (currentPath.includes('/admin/')) {
+    if (currentPath.includes('/admin')) {
         if (!user) {
             window.location.href = prefix + 'login.html?redirect=' + encodeURIComponent(window.location.href);
             return;
@@ -37,7 +37,8 @@ async function protectPage() {
     }
 
     // 3. Rute Auth (login.html / register.html - Jika sudah login, langsung ke dasbor)
-    if (currentPath.includes('login.html') || currentPath.includes('register.html')) {
+    const page = currentPath.split('/').pop().replace('.html', '');
+    if (page === 'login' || page === 'register') {
         if (user) {
             if (user.profile.role === 'admin') {
                 window.location.href = 'admin/index.html';

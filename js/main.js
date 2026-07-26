@@ -3,24 +3,25 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const currentPath = window.location.pathname;
+    const page = currentPath.split('/').pop().replace('.html', '');
 
-    // A. DINAMISASI HALAMAN UTAMA (index.html)
-    if (currentPath.includes('index.html') || currentPath.endsWith('umkm-desa-mlese/')) {
+    // A. DINAMISASI HALAMAN UTAMA (index.html atau root)
+    if (page === 'index' || page === '' || currentPath.endsWith('umkm-desa-mlese/')) {
         initHomepage();
     }
 
     // B. DINAMISASI HALAMAN KATALOG (umkm.html)
-    if (currentPath.includes('umkm.html')) {
+    if (page === 'umkm') {
         initCatalogPage();
     }
 
     // C. DINAMISASI HALAMAN DETAIL (detail.html)
-    if (currentPath.includes('detail.html')) {
+    if (page === 'detail') {
         initDetailPage();
     }
 
     // D. DINAMISASI HALAMAN ARTIKEL (artikel.html)
-    if (currentPath.includes('artikel.html')) {
+    if (page === 'artikel') {
         initArticlesPage();
     }
 });

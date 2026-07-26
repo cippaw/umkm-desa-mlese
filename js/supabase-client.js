@@ -330,17 +330,23 @@ window.mleseDB = {
 // Inisialisasi Kredensial Pengguna Demo Bawaan untuk Kemudahan Login Awal
 if (isDemoMode) {
     let mockUsers = JSON.parse(localStorage.getItem('mock_users') || '[]');
-    if (mockUsers.length === 0) {
-        // Admin
+    let adminExists = mockUsers.some(u => u.email === 'admin@mlese.desa.id');
+    let sellerExists = mockUsers.some(u => u.email === 'seller@mlese.desa.id');
+
+    if (!adminExists) {
         mockUsers.push({ id: 'admin-id', email: 'admin@mlese.desa.id', password: 'admin', username: 'admin_mlese', role: 'admin' });
-        // Seller
-        mockUsers.push({ id: 'seller-id', email: 'seller@mlese.desa.id', password: 'seller', username: 'umkm_mlese', role: 'seller' });
-        localStorage.setItem('mock_users', JSON.stringify(mockUsers));
-        
-        let mockProfiles = [
-            { id: 'admin-id', username: 'admin_mlese', role: 'admin', created_at: new Date() },
-            { id: 'seller-id', username: 'umkm_mlese', role: 'seller', created_at: new Date() }
-        ];
-        localStorage.setItem('mock_profiles', JSON.stringify(mockProfiles));
     }
+    if (!sellerExists) {
+        mockUsers.push({ id: 'seller-id', email: 'seller@mlese.desa.id', password: 'seller', username: 'umkm_mlese', role: 'seller' });
+    }
+    localStorage.setItem('mock_users', JSON.stringify(mockUsers));
+
+    let mockProfiles = JSON.parse(localStorage.getItem('mock_profiles') || '[]');
+    if (!mockProfiles.some(p => p.id === 'admin-id')) {
+        mockProfiles.push({ id: 'admin-id', username: 'admin_mlese', role: 'admin', created_at: new Date().toISOString() });
+    }
+    if (!mockProfiles.some(p => p.id === 'seller-id')) {
+        mockProfiles.push({ id: 'seller-id', username: 'umkm_mlese', role: 'seller', created_at: new Date().toISOString() });
+    }
+    localStorage.setItem('mock_profiles', JSON.stringify(mockProfiles));
 }
