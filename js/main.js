@@ -137,54 +137,64 @@ async function initCatalogPage() {
                     Memuat daftar UMKM Desa Mlese...
                 </div>
             `;
-            const { data, error } = await window.mleseDB.getApprovedUMKMList(kadus);
-            
-            if (error || !data || data.length === 0) {
-                listGrid.innerHTML = `
-                    <div class="col-span-full text-center py-12 text-gray-400">
-                        <i class="fa-solid fa-store-slash text-4xl mb-3 block"></i>
-                        Belum ada UMKM disetujui untuk wilayah ini.
-                    </div>
-                `;
-                return;
-            }
-
-            listGrid.innerHTML = '';
-            data.forEach(item => {
-                const card = `
-                    <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row h-full">
-                        <div class="w-full md:w-64 h-48 md:h-auto overflow-hidden relative flex-shrink-0">
-                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.src='assets/profil_dukuh.jpeg'">
-                            <span class="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Kadus ${item.kadus}</span>
+            try {
+                const { data, error } = await window.mleseDB.getApprovedUMKMList(kadus);
+                
+                if (error || !data || data.length === 0) {
+                    listGrid.innerHTML = `
+                        <div class="col-span-full text-center py-12 text-gray-400">
+                            <i class="fa-solid fa-store-slash text-4xl mb-3 block"></i>
+                            Belum ada UMKM disetujui untuk wilayah ini.
                         </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl text-gray-800 dark:text-white hover:text-red-650 transition-colors">${item.title}</h3>
-                            <p class="text-xs text-gray-500 mt-1"><i class="fa-solid fa-user"></i> Pemilik: ${item.owner}</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 line-clamp-3 leading-relaxed flex-grow">${item.description}</p>
-                            
-                            <ul class="text-xs text-gray-500 mt-4 space-y-1 bg-gray-50 dark:bg-slate-950 p-3 rounded-lg border border-gray-100 dark:border-slate-850">
-                                <li><strong>Produk:</strong> ${item.productsList || 'Aneka olahan mandiri'}</li>
-                                <li class="truncate"><strong>Alamat:</strong> ${item.address}</li>
-                            </ul>
+                    `;
+                    return;
+                }
 
-                            <div class="mt-5 flex flex-wrap gap-2 justify-between items-center border-t border-gray-50 dark:border-slate-850 pt-4">
-                                <a href="detail.html?id=${item.id}" class="px-5 py-2.5 bg-red-600 hover:bg-red-750 text-white font-semibold text-xs rounded-lg transition-colors">
-                                    Detail Profil Usaha ➔
-                                </a>
-                                <div class="flex gap-2">
-                                    <a href="${item.wa_link}" target="_blank" class="w-8 h-8 rounded-lg bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors" title="Hubungi WhatsApp">
-                                        <i class="fa-brands fa-whatsapp"></i>
+                listGrid.innerHTML = '';
+                data.forEach(item => {
+                    const card = `
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row h-full">
+                            <div class="w-full md:w-64 h-48 md:h-auto overflow-hidden relative flex-shrink-0">
+                                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.src='assets/profil_dukuh.jpeg'">
+                                <span class="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Kadus ${item.kadus}</span>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="font-bold text-xl text-gray-800 dark:text-white hover:text-red-650 transition-colors">${item.title}</h3>
+                                <p class="text-xs text-gray-500 mt-1"><i class="fa-solid fa-user"></i> Pemilik: ${item.owner}</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 line-clamp-3 leading-relaxed flex-grow">${item.description}</p>
+                                
+                                <ul class="text-xs text-gray-500 mt-4 space-y-1 bg-gray-50 dark:bg-slate-950 p-3 rounded-lg border border-gray-100 dark:border-slate-850">
+                                    <li><strong>Produk:</strong> ${item.productsList || 'Aneka olahan mandiri'}</li>
+                                    <li class="truncate"><strong>Alamat:</strong> ${item.address}</li>
+                                </ul>
+
+                                <div class="mt-5 flex flex-wrap gap-2 justify-between items-center border-t border-gray-50 dark:border-slate-850 pt-4">
+                                    <a href="detail.html?id=${item.id}" class="px-5 py-2.5 bg-red-600 hover:bg-red-750 text-white font-semibold text-xs rounded-lg transition-colors">
+                                        Detail Profil Usaha ➔
                                     </a>
-                                    <a href="${item.maps_link}" target="_blank" class="w-8 h-8 rounded-lg bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 transition-colors" title="Buka Google Maps">
-                                        <i class="fa-solid fa-map-location-dot"></i>
-                                    </a>
+                                    <div class="flex gap-2">
+                                        <a href="${item.wa_link || '#'}" target="_blank" class="w-8 h-8 rounded-lg bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors" title="Hubungi WhatsApp">
+                                            <i class="fa-brands fa-whatsapp"></i>
+                                        </a>
+                                        <a href="${item.maps_link || '#'}" target="_blank" class="w-8 h-8 rounded-lg bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 transition-colors" title="Buka Google Maps">
+                                            <i class="fa-solid fa-map-location-dot"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    `;
+                    listGrid.insertAdjacentHTML('beforeend', card);
+                });
+            } catch (err) {
+                console.error("Gagal memuat katalog UMKM:", err);
+                listGrid.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-red-500">
+                        <i class="fa-solid fa-triangle-exclamation text-4xl mb-3 block"></i>
+                        Gagal memuat data dari database. Silakan segarkan halaman.
                     </div>
                 `;
-                listGrid.insertAdjacentHTML('beforeend', card);
-            });
+            }
         }
     };
 
