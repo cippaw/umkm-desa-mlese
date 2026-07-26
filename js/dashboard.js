@@ -382,12 +382,3 @@ async function initDashboardAddArticle(user) {
     });
 }
 
-// CRUD Helper Update UMKM manual
-window.mleseDB.updateUMKM = async (id, umkmData) => {
-    if (window.mleseDB.isDemo) {
-        return await LocalDB.update('umkm', id, umkmData);
-    } else {
-        const { supabaseClient } = window; // referensi global
-        return await supabaseClient.from('umkm').update(umkmData).eq('id', id);
-    }
-};

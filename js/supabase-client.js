@@ -260,6 +260,14 @@ window.mleseDB = {
         }
     },
 
+    updateUMKM: async (id, umkmData) => {
+        if (isDemoMode) {
+            return await LocalDB.update('umkm', id, umkmData);
+        } else {
+            return await supabaseClient.from('umkm').update(umkmData).eq('id', id);
+        }
+    },
+
     deleteUMKM: async (id) => {
         if (isDemoMode) {
             return await LocalDB.delete('umkm', id);
