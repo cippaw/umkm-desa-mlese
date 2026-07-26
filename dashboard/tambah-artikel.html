@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulis Artikel Baru - Dasbor Desa Mlese</title>
+    <!-- Tailwind CSS v3 (Play CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <!-- Dark/Light Theme Init -->
+    <script src="../js/theme.js"></script>
+</head>
+<body class="bg-gray-50 dark:bg-slate-950 text-gray-900 dark:text-white min-h-screen flex flex-col md:flex-row transition-colors duration-300">
+
+    <!-- SIDEBAR NAV -->
+    <aside class="w-full md:w-64 bg-slate-900 dark:bg-slate-955 text-slate-300 flex flex-col flex-shrink-0 border-r border-slate-800">
+        <div class="h-16 flex items-center justify-between px-6 bg-slate-950 border-b border-slate-800">
+            <span class="text-white font-extrabold text-base tracking-wider uppercase">Panel Pelaku Usaha</span>
+        </div>
+        
+        <div class="p-4 border-b border-slate-800 text-center md:text-left">
+            <p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Selamat Datang,</p>
+            <p class="text-sm font-bold text-white mt-1" id="user-display-name">Memuat...</p>
+        </div>
+
+        <nav class="flex-grow p-4 space-y-1">
+            <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-chart-line w-5"></i> Ringkasan Dasbor
+            </a>
+            <a href="profil.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-store w-5"></i> Profil UMKM Anda
+            </a>
+            <a href="produk.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-boxes-stacked w-5"></i> Kelola Produk
+            </a>
+            <a href="artikel.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-red-650 text-white font-semibold text-sm transition-all shadow-md shadow-red-500/10">
+                <i class="fa-solid fa-newspaper w-5"></i> Artikel Kegiatan
+            </a>
+            <a href="galeri.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-images w-5"></i> Galeri Foto Usaha
+            </a>
+            <a href="pengaturan.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-gears w-5"></i> Pengaturan
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-800 flex gap-2 items-center justify-between">
+            <button id="logout-btn" class="flex-grow flex items-center justify-center gap-2 px-4 py-2.5 bg-red-950/40 hover:bg-red-955/60 text-red-200 border border-red-800/30 rounded-xl text-xs font-bold transition-all">
+                <i class="fa-solid fa-right-from-bracket"></i> Keluar Sistem
+            </button>
+            <div class="flex items-center">
+                <!-- theme.js will inject theme button here -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN PANEL -->
+    <main class="flex-grow p-6 md:p-8">
+        
+        <!-- Header Row -->
+        <div class="border-b border-gray-200 dark:border-slate-850 pb-5 mb-8">
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">Tulis Artikel Baru</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Publikasikan tulisan berita, pelatihan kelompok, kisah sukses wirausaha Anda ke halaman Beranda.</p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 p-8 shadow-sm max-w-2xl">
+            <form id="dashboard-add-article-form" class="space-y-5">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="article-title" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Judul Artikel *</label>
+                        <input type="text" id="article-title" required placeholder="Pelatihan Digital Marketing Pelaku UMKM Desa Mlese" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-805 text-sm text-gray-955 dark:text-white focus:border-red-655 focus:ring-2 focus:ring-red-500/20 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label for="article-author" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Nama Penulis *</label>
+                        <input type="text" id="article-author" required placeholder="Ibu Utami" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-805 text-sm text-gray-955 dark:text-white focus:border-red-655 focus:ring-2 focus:ring-red-500/20 outline-none transition-all">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="article-content" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Konten / Isi Artikel *</label>
+                    <textarea id="article-content" required rows="6" placeholder="Tuliskan berita lengkap mengenai kegiatan pelatihan, detail program bantuan usaha, tips pemasaran, atau kisah menarik perjalanan produk UMKM Anda..." class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-805 text-sm text-gray-955 dark:text-white focus:border-red-655 focus:ring-2 focus:ring-red-500/20 outline-none transition-all"></textarea>
+                </div>
+
+                <div>
+                    <label for="article-photo" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Foto Sampul Artikel *</label>
+                    <input type="file" id="article-photo" accept="image/*" required class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-955 dark:text-white focus:border-red-655 focus:ring-2 focus:ring-red-500/20 outline-none transition-all">
+                </div>
+
+                <div class="pt-4 border-t border-gray-100 dark:border-slate-850 flex gap-4">
+                    <button type="submit" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold text-sm rounded-xl transition-all shadow-md shadow-red-500/10">
+                        Terbitkan Artikel Baru
+                    </button>
+                    <a href="artikel.html" class="px-6 py-3 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-gray-300 font-bold text-sm rounded-xl transition-all flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700">
+                        Batal
+                    </a>
+                </div>
+
+            </form>
+        </div>
+
+    </main>
+
+    <!-- Supabase SDK & JS scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../products.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

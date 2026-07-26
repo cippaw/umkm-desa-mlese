@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Profil UMKM - Dasbor Desa Mlese</title>
+    <!-- Tailwind CSS v3 (Play CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <!-- Dark/Light Theme Init -->
+    <script src="../js/theme.js"></script>
+</head>
+<body class="bg-gray-50 dark:bg-slate-950 text-gray-900 dark:text-white min-h-screen flex flex-col md:flex-row transition-colors duration-300">
+
+    <!-- SIDEBAR NAV -->
+    <aside class="w-full md:w-64 bg-slate-900 dark:bg-slate-950 text-slate-300 flex flex-col flex-shrink-0 border-r border-slate-800">
+        <div class="h-16 flex items-center justify-between px-6 bg-slate-950 border-b border-slate-800">
+            <span class="text-white font-extrabold text-base tracking-wider uppercase">Panel Pelaku Usaha</span>
+        </div>
+        
+        <div class="p-4 border-b border-slate-800 text-center md:text-left">
+            <p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Selamat Datang,</p>
+            <p class="text-sm font-bold text-white mt-1" id="user-display-name">Memuat...</p>
+        </div>
+
+        <nav class="flex-grow p-4 space-y-1">
+            <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-chart-line w-5"></i> Ringkasan Dasbor
+            </a>
+            <a href="profil.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-red-650 text-white font-semibold text-sm transition-all shadow-md shadow-red-500/10">
+                <i class="fa-solid fa-store w-5"></i> Profil UMKM Anda
+            </a>
+            <a href="produk.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-boxes-stacked w-5"></i> Kelola Produk
+            </a>
+            <a href="artikel.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-newspaper w-5"></i> Artikel Kegiatan
+            </a>
+            <a href="galeri.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-images w-5"></i> Galeri Foto Usaha
+            </a>
+            <a href="pengaturan.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-gears w-5"></i> Pengaturan
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-800 flex gap-2 items-center justify-between">
+            <button id="logout-btn" class="flex-grow flex items-center justify-center gap-2 px-4 py-2.5 bg-red-950/40 hover:bg-red-950/60 text-red-200 border border-red-800/30 rounded-xl text-xs font-bold transition-all">
+                <i class="fa-solid fa-right-from-bracket"></i> Keluar Sistem
+            </button>
+            <div class="flex items-center">
+                <!-- theme.js will inject theme button here -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN PANEL -->
+    <main class="flex-grow p-6 md:p-8">
+        
+        <!-- Header Row -->
+        <div class="border-b border-gray-200 dark:border-slate-850 pb-5 mb-8">
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">Profil UMKM Desa Mlese</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Lengkapi informasi usaha Anda agar terverifikasi dan muncul secara publik di situs desa.</p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 p-8 shadow-sm max-w-3xl">
+            <form id="dashboard-profile-form" class="space-y-6">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="umkm-title" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Nama UMKM / Usaha *</label>
+                        <input type="text" id="umkm-title" required placeholder="UMKM Anyaman Bambu Murni" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-red-600 focus:ring-2 focus:ring-red-500/20 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label for="umkm-owner" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Nama Pemilik / Penjual *</label>
+                        <input type="text" id="umkm-owner" required placeholder="Ibu Handayani" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-red-600 focus:ring-2 focus:ring-red-500/20 outline-none transition-all">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="umkm-description" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Deskripsi / Penjelasan Usaha *</label>
+                    <textarea id="umkm-description" required rows="4" placeholder="Jelaskan mengenai keunikan produk, bahan baku, proses pembuatan, dan sejarah singkat usaha Anda..." class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-red-600 focus:ring-2 focus:ring-red-500/20 outline-none transition-all"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2">
+                        <label for="umkm-address" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Alamat Usaha RT/RW *</label>
+                        <input type="text" id="umkm-address" required placeholder="Dusun Birin RT 02 / RW 04, Desa Mlese" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-red-600 focus:ring-2 focus:ring-red-500/20 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label for="umkm-kadus" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Wilayah Kadus *</label>
+                        <select id="umkm-kadus" required class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-red-600 focus:ring-2 focus:ring-red-500/20 outline-none transition-all">
+                            <option value="1">Kadus 1</option>
+                            <option value="2">Kadus 2 (Dusun Birin)</option>
+                            <option value="3">Kadus 3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label for="umkm-drive" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Link Drive Katalog (Optional)</label>
+                        <input type="url" id="umkm-drive" placeholder="https://s.id/KatalogDrive" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-red-600 focus:ring-2 focus:ring-red-500/20 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label for="umkm-maps" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Link Google Maps (Optional)</label>
+                        <input type="url" id="umkm-maps" placeholder="https://maps.app.goo.gl/..." class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-red-600 focus:ring-2 focus:ring-red-500/20 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label for="umkm-wa" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Nomor WhatsApp *</label>
+                        <input type="text" id="umkm-wa" required placeholder="6281234567890" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-red-600 focus:ring-2 focus:ring-red-500/20 outline-none transition-all">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="umkm-photo" class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-1">Foto Sampul / Banner UMKM *</label>
+                    <input type="file" id="umkm-photo" accept="image/*" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-red-600 focus:ring-2 focus:ring-red-500/20 outline-none transition-all">
+                </div>
+
+                <div class="pt-4 border-t border-gray-100 dark:border-slate-800 flex gap-4">
+                    <button type="submit" class="px-6 py-3 bg-red-600 hover:bg-red-750 text-white font-bold text-sm rounded-xl transition-all shadow-md shadow-red-500/10">
+                        Ajukan Profil UMKM baru
+                    </button>
+                    <a href="index.html" class="px-6 py-3 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-gray-300 font-bold text-sm rounded-xl transition-all flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700">
+                        Batal
+                    </a>
+                </div>
+
+            </form>
+        </div>
+
+    </main>
+
+    <!-- Supabase SDK & JS scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../products.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasbor Admin - UMKM Desa Mlese</title>
+    <!-- Tailwind CSS v3 (Play CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <!-- Dark/Light Theme Init -->
+    <script src="../js/theme.js"></script>
+</head>
+<body class="bg-gray-50 dark:bg-slate-955 text-gray-900 dark:text-white min-h-screen flex flex-col md:flex-row transition-colors duration-300">
+
+    <!-- SIDEBAR NAV (ADMIN) -->
+    <aside class="w-full md:w-64 bg-slate-900 dark:bg-slate-950 text-slate-300 flex flex-col flex-shrink-0 border-r border-slate-800">
+        <div class="h-16 flex items-center justify-between px-6 bg-slate-955 border-b border-slate-800">
+            <span class="text-white font-extrabold text-base tracking-wider uppercase">Panel Admin Desa</span>
+        </div>
+        
+        <div class="p-4 border-b border-slate-800 text-center md:text-left">
+            <p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Perangkat Desa,</p>
+            <p class="text-sm font-bold text-white mt-1" id="admin-header-name">Memuat...</p>
+        </div>
+
+        <nav class="flex-grow p-4 space-y-1">
+            <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-red-655 text-white font-semibold text-sm transition-all shadow-md shadow-red-500/10">
+                <i class="fa-solid fa-chart-line w-5"></i> Ringkasan Dasbor
+            </a>
+            <a href="verifikasi.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-user-check w-5"></i> Verifikasi Pengajuan
+            </a>
+            <a href="kelola-umkm.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-store w-5"></i> Kelola Semua UMKM
+            </a>
+            <a href="user.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-users w-5"></i> Kelola Pengguna
+            </a>
+            <a href="statistik.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-900 hover:text-white text-sm transition-all">
+                <i class="fa-solid fa-square-poll-vertical w-5"></i> Statistik Analitik
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-800 flex gap-2 items-center justify-between">
+            <button id="logout-btn" class="flex-grow flex items-center justify-center gap-2 px-4 py-2.5 bg-red-955/40 hover:bg-red-950/60 text-red-200 border border-red-800/30 rounded-xl text-xs font-bold transition-all">
+                <i class="fa-solid fa-right-from-bracket"></i> Keluar Sistem
+            </button>
+            <div class="flex items-center">
+                <!-- theme.js will inject theme button here -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN PANEL -->
+    <main class="flex-grow p-6 md:p-8">
+        
+        <!-- Header Row -->
+        <div class="border-b border-gray-200 dark:border-slate-855 pb-5 mb-8">
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">Dasbor Perangkat Desa</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Kelola data pendaftaran UMKM warga dan pantau analitik ekonomi desa.</p>
+        </div>
+
+        <!-- 📊 QUICK STATS GRID -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-gray-400 dark:text-gray-500 font-bold uppercase tracking-wider block">Total UMKM</span>
+                    <span class="text-2xl font-extrabold text-gray-800 dark:text-white block mt-1" id="admin-stat-total-umkm">0</span>
+                </div>
+                <div class="w-12 h-12 bg-red-50 dark:bg-red-950/20 text-red-650 dark:text-red-400 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-store"></i></div>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-gray-400 dark:text-gray-500 font-bold uppercase tracking-wider block">UMKM Disetujui</span>
+                    <span class="text-2xl font-extrabold text-gray-800 dark:text-white block mt-1" id="admin-stat-approved">0</span>
+                </div>
+                <div class="w-12 h-12 bg-green-50 dark:bg-green-950/20 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-circle-check"></i></div>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-gray-400 dark:text-gray-500 font-bold uppercase tracking-wider block">Butuh Verifikasi</span>
+                    <span class="text-2xl font-extrabold text-gray-800 dark:text-white block mt-1" id="admin-stat-pending">0</span>
+                </div>
+                <div class="w-12 h-12 bg-yellow-50 dark:bg-yellow-950/20 text-yellow-600 dark:text-yellow-400 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-gray-400 dark:text-gray-500 font-bold uppercase tracking-wider block">Katalog Produk</span>
+                    <span class="text-2xl font-extrabold text-gray-800 dark:text-white block mt-1" id="admin-stat-products">0</span>
+                </div>
+                <div class="w-12 h-12 bg-purple-50 dark:bg-purple-950/20 text-purple-650 dark:text-purple-400 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-tags"></i></div>
+            </div>
+        </div>
+
+        <!-- RECENT REQUESTS TABLE -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 overflow-hidden shadow-sm">
+            <div class="p-6 border-b border-gray-100 dark:border-slate-800 flex justify-between items-center">
+                <h3 class="font-extrabold text-gray-800 dark:text-white text-lg">🔔 Pengajuan Baru Menunggu Verifikasi</h3>
+                <a href="verifikasi.html" class="text-xs font-bold text-red-600 hover:text-red-750 transition-colors">Lihat Semua ➔</a>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-350 uppercase text-[10px] font-bold tracking-wider border-b border-gray-100 dark:border-slate-800">
+                        <tr>
+                            <th class="px-6 py-4">No</th>
+                            <th class="px-6 py-4">Nama Usaha</th>
+                            <th class="px-6 py-4">Pemilik</th>
+                            <th class="px-6 py-4">Wilayah</th>
+                            <th class="px-6 py-4">Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-recent-pending-body" class="divide-y divide-gray-100 dark:divide-slate-800">
+                        <!-- Loaded dynamically -->
+                        <tr>
+                            <td colspan="5" class="text-center py-6 text-gray-400">Memuat pengajuan baru...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Supabase SDK & JS scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../products.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>
