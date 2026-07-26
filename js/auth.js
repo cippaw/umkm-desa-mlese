@@ -37,7 +37,8 @@ async function protectPage() {
     }
 
     // 3. Rute Auth (login.html / register.html - Jika sudah login, langsung ke dasbor)
-    const page = currentPath.split('/').pop().replace('.html', '');
+    const cleanPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
+    const page = cleanPath.split('/').pop().replace('.html', '');
     if (page === 'login' || page === 'register') {
         if (user) {
             if (user.profile.role === 'admin') {

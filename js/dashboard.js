@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!user) return; // auth.js will handle redirect
 
     const currentPath = window.location.pathname;
-    const page = currentPath.split('/').pop().replace('.html', '');
+    const cleanPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
+    const page = cleanPath.split('/').pop().replace('.html', '');
 
     // Load common header / user details
     const sellerHeaderName = document.getElementById('seller-header-name');

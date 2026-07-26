@@ -3,7 +3,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const currentPath = window.location.pathname;
-    const page = currentPath.split('/').pop().replace('.html', '');
+    const cleanPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
+    const page = cleanPath.split('/').pop().replace('.html', '');
 
     // A. DINAMISASI HALAMAN UTAMA (index.html atau root)
     if (page === 'index' || page === '' || currentPath.endsWith('umkm-desa-mlese/')) {

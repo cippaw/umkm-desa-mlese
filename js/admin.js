@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!user || user.profile.role !== 'admin') return; // auth.js will protect
 
     const currentPath = window.location.pathname;
-    const page = currentPath.split('/').pop().replace('.html', '');
+    const cleanPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
+    const page = cleanPath.split('/').pop().replace('.html', '');
 
     // Load admin header profile name
     const adminHeaderName = document.getElementById('admin-header-name');
