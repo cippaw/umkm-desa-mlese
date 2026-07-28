@@ -18,7 +18,7 @@ const products = [
     {
         id: "umkm-jenang",
         title: "Jenang Ayu",
-        owner: "Ibu Sutami",
+        owner: "Ibu Utami",
         kadus: 2,
         category: "Kuliner Tradisional",
         description: "Jenang Ayu merupakan UMKM yang memproduksi jenang tradisional khas Jawa secara turun-temurun dengan mempertahankan cita rasa autentik. Seluruh proses pembuatan dilakukan secara higienis menggunakan bahan-bahan pilihan seperti tepung ketan, santan kelapa, dan gula jawa berkualitas tanpa tambahan bahan pengawet berbahaya. Produk diolah dengan resep tradisional sehingga menghasilkan tekstur lembut, rasa manis yang pas, dan kualitas yang tetap terjaga.",
@@ -27,8 +27,8 @@ const products = [
         image: "assets/jenang_ayu.jpeg",
         links: {
             catalog: "https://s.id/KatalogProdukTokoOlehOlehBuSiswo",
-            maps: "https://maps.app.goo.gl/ko72HpFB4yZW666m9",
-            whatsapp: "https://wa.me/6281584545086?text=Halo%20Toko%20Jenang%20Ayu%20'Bu%20Siswo',%20saya%20tertarik%20untuk%20memesan%20produk%20jenang%20ayu%20Anda."
+            maps: "https://maps.app.goo.gl/hqvZ7y4yVPvKwQ8B7",
+            whatsapp: "https://wa.me/6281584545086?text=Halo%20Toko%20Jenang%20Ayu%20'Bu%20Siswo',%20saya%20tertarik%20untuk%20memesan%20produk%20jenang%20ayu%20Ibu."
         }
     },
     {
@@ -43,7 +43,7 @@ const products = [
         image: "assets/karak_birin.jpeg",
         links: {
             catalog: "https://s.id/KatalogProdukKarakBuSuranti",
-            maps: "https://maps.app.goo.gl/dyeYj24bDD2ae2GL8",
+            maps: "https://maps.app.goo.gl/9ePvGzjY3xSW3nQVA",
             whatsapp: "https://wa.me/6287827559044?text=Halo%20UMKM%20Karak%20Gurih%20Tanpa%20Boraks%20Bu%20Suranti,%20saya%20tertarik%20untuk%20memesan%20produk%20karak%20Anda."
         }
     },
