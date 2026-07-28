@@ -25,6 +25,9 @@ function runInit() {
     if (page === 'artikel') {
         initArticlesPage();
     }
+
+    // E. NAV HIGHLIGHT
+    initNavbarHighlight();
 }
 
 if (document.readyState === 'loading') {
@@ -339,6 +342,72 @@ async function initArticlesPage() {
             `;
             artGrid.insertAdjacentHTML('beforeend', card);
         });
+    }
+}
+
+// 5. Logika Dinamis Highlight Menu Navbar (Beranda / Tentang Kami)
+function initNavbarHighlight() {
+    const navHome = document.querySelector('nav a[href="index.html"]') || document.querySelector('nav a[href="index"]') || document.querySelector('nav a[href="/"]');
+    const navUmkm = document.querySelector('nav a[href="umkm.html"]') || document.querySelector('nav a[href="umkm"]') || document.querySelector('nav a[href="/umkm"]');
+    const navArtikel = document.querySelector('nav a[href="artikel.html"]') || document.querySelector('nav a[href="artikel"]') || document.querySelector('nav a[href="/artikel"]');
+    const navAbout = document.querySelector('nav a[href="#tentang-section"]') || document.querySelector('nav a[href="index.html#tentang-section"]') || document.querySelector('nav a[href$="#tentang-section"]');
+
+    const makeActive = (el) => {
+        if (!el) return;
+        el.classList.remove('text-gray-600', 'dark:text-gray-300', 'hover:text-red-600', 'dark:hover:text-red-500');
+        el.classList.add('text-red-600', 'dark:text-red-500');
+    };
+    const makeInactive = (el) => {
+        if (!el) return;
+        el.classList.remove('text-red-600', 'dark:text-red-500');
+        el.classList.add('text-gray-600', 'dark:text-gray-300', 'hover:text-red-600', 'dark:hover:text-red-500');
+    };
+
+    const updateHighlight = () => {
+        const currentPath = window.location.pathname;
+        const cleanPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
+        const page = cleanPath.split('/').pop().replace('.html', '');
+        const hash = window.location.hash;
+
+        [navHome, navUmkm, navArtikel, navAbout].forEach(makeInactive);
+
+        if (hash === '#tentang-section') {
+            makeActive(navAbout);
+        } else if (page === 'umkm') {
+            makeActive(navUmkm);
+        } else if (page === 'artikel') {
+            makeActive(navArtikel);
+        } else if (page === 'index' || page === '') {
+            makeActive(navHome);
+        }
+    };
+
+    // Listen to hash change
+    window.addEventListener('hashchange', updateHighlight);
+    
+    // Initial update
+    updateHighlight();
+
+    // Intersection Observer for scroll tracking (only on homepage)
+    const tentangSection = document.getElementById('tentang-section');
+    if (tentangSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Update active navbar state
+                    [navHome, navUmkm, navArtikel, navAbout].forEach(makeInactive);
+                    makeActive(navAbout);
+                } else {
+                    // Only switch back to Home if we scrolled UP (above the section)
+                    if (window.scrollY < tentangSection.offsetTop - 100) {
+                        [navHome, navUmkm, navArtikel, navAbout].forEach(makeInactive);
+                        makeActive(navHome);
+                    }
+                }
+            });
+        }, { threshold: 0.3 }); // Trigger when 30% of the section is visible
+        
+        observer.observe(tentangSection);
     }
 }
 
