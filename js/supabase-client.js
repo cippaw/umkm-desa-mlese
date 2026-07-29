@@ -373,7 +373,7 @@ window.mleseDB = {
 
 // Inisialisasi Kredensial Pengguna Demo Bawaan untuk Kemudahan Login Awal
 if (isDemoMode) {
-    const CURRENT_DB_VERSION = 'v7'; // Versi database untuk reset otomatis jika data diubah
+    const CURRENT_DB_VERSION = 'v9'; // Versi database untuk reset otomatis jika data diubah
     const localVersion = localStorage.getItem('mock_db_version');
     if (localVersion !== CURRENT_DB_VERSION) {
         localStorage.removeItem('mock_umkm');
