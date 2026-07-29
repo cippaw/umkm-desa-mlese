@@ -1,8 +1,8 @@
 // Supabase Client Setup & Smart Fallback
 // -------------------------------------------------------------
 // Masukkan kredensial project Supabase Anda di sini untuk menghubungkan database cloud.
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://tetzqmaggujmsrvkwvzu.supabase.co/rest/v1/';
+const SUPABASE_ANON_KEY = 'sb_publishable_1YFTmgXtr0anP56sDPWZqQ_fQtI61iE';
 
 let isDemoMode = false;
 let supabaseClient = null;
