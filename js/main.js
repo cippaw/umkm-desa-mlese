@@ -1,5 +1,10 @@
-// Main Public Page Rendering Logic
-// -------------------------------------------------------------
+// Helper to resolve images absolutely
+function getImagePath(path) {
+    if (!path) return '/assets/profil_dukuh.jpeg';
+    if (path.startsWith('http') || path.startsWith('data:')) return path;
+    if (path.startsWith('/')) return path;
+    return '/' + path;
+}
 
 function runInit() {
     const currentPath = window.location.pathname;
@@ -88,7 +93,7 @@ async function initHomepage() {
             const card = `
                 <div class="bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col h-full hover:translate-y-[-4px] transition-transform duration-300">
                     <div class="h-44 overflow-hidden relative">
-                        <img src="${product.image_url || product.image || 'assets/profil_dukuh.jpeg'}" alt="${product.name}" class="w-full h-full object-cover" onerror="this.src='assets/profil_dukuh.jpeg'">
+                        <img src="${getImagePath(product.image_url || product.image)}" alt="${product.name}" class="w-full h-full object-cover" onerror="this.src='/assets/profil_dukuh.jpeg'">
                         <span class="absolute top-4 right-4 bg-amber-500 text-white text-[10px] font-bold px-2 py-1 rounded-full">Rp ${product.price || 'Sesuai Katalog'}</span>
                     </div>
                     <div class="p-4 flex flex-col flex-grow">
@@ -111,7 +116,7 @@ async function initHomepage() {
             const card = `
                 <div class="bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
                     <div class="h-40 overflow-hidden">
-                        <img src="${art.image_url || 'assets/profil_dukuh.jpeg'}" alt="${art.title}" class="w-full h-full object-cover" onerror="this.src='assets/profil_dukuh.jpeg'">
+                        <img src="${getImagePath(art.image_url)}" alt="${art.title}" class="w-full h-full object-cover" onerror="this.src='/assets/profil_dukuh.jpeg'">
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
                         <h4 class="font-bold text-gray-800 dark:text-white line-clamp-2 hover:text-red-650 transition-colors cursor-pointer">${art.title}</h4>
@@ -158,7 +163,7 @@ async function initCatalogPage() {
                     const card = `
                         <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row h-full">
                             <div class="w-full md:w-64 h-48 md:h-auto overflow-hidden relative flex-shrink-0">
-                                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.src='assets/profil_dukuh.jpeg'">
+                                <img src="${getImagePath(item.image)}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.src='/assets/profil_dukuh.jpeg'">
                                 <span class="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Kadus ${item.kadus}</span>
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
@@ -242,7 +247,7 @@ async function initDetailPage() {
     document.getElementById('detail-products-list') && (document.getElementById('detail-products-list').textContent = item.productsList || '-');
 
     const mainImg = document.getElementById('detail-main-img');
-    if (mainImg) mainImg.src = item.image || 'assets/profil_dukuh.jpeg';
+    if (mainImg) mainImg.src = getImagePath(item.image);
 
     // Sambungkan Link Tombol
     document.getElementById('btn-catalog-drive') && (document.getElementById('btn-catalog-drive').href = item.drive_link || '#');
@@ -279,7 +284,7 @@ async function initDetailPage() {
                 const pCard = `
                     <div class="bg-gray-50 dark:bg-slate-950 rounded-xl overflow-hidden border border-gray-100 dark:border-slate-850 shadow-sm flex flex-col">
                         <div class="h-40 overflow-hidden">
-                            <img src="${p.image_url || p.image || 'assets/profil_dukuh.jpeg'}" alt="${p.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" onerror="this.src='assets/profil_dukuh.jpeg'">
+                            <img src="${getImagePath(p.image_url || p.image)}" alt="${p.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" onerror="this.src='/assets/profil_dukuh.jpeg'">
                         </div>
                         <div class="p-4 flex flex-col flex-grow">
                             <h4 class="font-bold text-gray-800 dark:text-white line-clamp-1">${p.name}</h4>

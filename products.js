@@ -8,7 +8,7 @@ const products = [
         description: "Brondong Jagung Mlese merupakan usaha rumahan yang memproduksi camilan tradisional berbahan dasar jagung berkualitas. Setiap proses produksi dilakukan secara higienis dengan memperhatikan kualitas bahan baku dan cita rasa, sehingga menghasilkan brondong yang renyah, ringan, dan nikmat. Dengan berbagai pilihan rasa, produk ini menjadi salah satu camilan khas yang diminati masyarakat serta memiliki potensi sebagai oleh-oleh unggulan Desa Mlese.",
         productsList: "Brondong Jagung Original, Brondong Jagung Manis, Brondong Jagung Gurih, Brondong Jagung Aneka Rasa",
         address: "Dusun Mlese RT 01/RW 02, Desa Mlese, Kecamatan Gantiwarno, Kabupaten Klaten.",
-        image: "assets/profil_dukuh.jpeg",
+        image: "assets/brondong.png",
         drive_link: "#",
         maps_link: "#",
         wa_link: "https://wa.me/6281234567890?text=Halo%20UMKM%20Brondong%20Jagung,%20saya%20tertarik%20untuk%20memesan%20produk%20Anda."
@@ -45,12 +45,12 @@ const products = [
         id: "44444444-4444-4444-4444-444444444444",
         title: "UMKM Rambak",
         owner: "Ibu Sugiyem",
-        kadus: 2,
+        kadus: 3,
         category: "Kuliner Tradisional",
         description: "Rambak Mlese merupakan usaha rumahan yang menghasilkan kerupuk rambak berkualitas dengan cita rasa gurih dan tekstur renyah. Produk dibuat melalui proses produksi yang higienis dengan tetap mempertahankan cara pengolahan tradisional sehingga menghasilkan kualitas yang konsisten. Rambak ini dapat dinikmati sebagai camilan maupun pelengkap berbagai masakan, serta menjadi salah satu produk olahan yang mendukung potensi UMKM Desa Mlese.",
         productsList: "Rambak Original, Rambak Gurih, Rambak Mentah, Rambak Siap Goreng",
         address: "Dusun Sidomulyo RT 03/RW 07, Desa Mlese, Kecamatan Gantiwarno, Kabupaten Klaten.",
-        image: "assets/profil_dukuh.jpeg",
+        image: "assets/rambak.png",
         drive_link: "#",
         maps_link: "#",
         wa_link: "https://wa.me/6283123456789?text=Halo%20UMKM%20Rambak,%20saya%20tertarik%20untuk%20memesan%20produk%20rambak%20Anda."
