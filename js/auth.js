@@ -73,8 +73,8 @@ function initAuth() {
                 alert('Pendaftaran gagal: ' + error.message);
                 if (submitBtn) submitBtn.disabled = false;
             } else {
-                alert('Pendaftaran berhasil! Silakan masuk ke dalam dasbor.');
-                window.location.href = 'login.html';
+                alert('Pendaftaran berhasil! Silakan masuk menggunakan akun baru Anda.');
+                window.location.href = '/login.html';
             }
         });
     }
@@ -99,9 +99,9 @@ function initAuth() {
                 // Periksa role pengguna yang masuk
                 const user = await window.mleseDB.getUser();
                 if (user && user.profile.role === 'admin') {
-                    window.location.href = 'admin/index.html';
+                    window.location.href = '/admin/index.html';
                 } else {
-                    window.location.href = 'dashboard/index.html';
+                    window.location.href = '/dashboard/index.html';
                 }
             }
         });
@@ -114,7 +114,7 @@ function initAuth() {
             e.preventDefault();
             if (confirm('Apakah Anda yakin ingin keluar dari sistem?')) {
                 await window.mleseDB.logout();
-                window.location.href = getPathPrefix() + 'login.html';
+                window.location.href = '/login.html';
             }
         });
     }
