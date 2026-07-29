@@ -179,7 +179,7 @@ async function initDashboardProfile(user) {
             alert('Pengajuan UMKM baru berhasil dikirim! Silakan tunggu konfirmasi perangkat desa.');
         }
 
-        window.location.href = 'index.html';
+        window.location.href = '/dashboard/index.html';
     });
 }
 
@@ -264,7 +264,7 @@ async function initDashboardAddProduct(user) {
 
     if (!userUMKM) {
         alert('Anda harus memiliki UMKM terdaftar sebelum bisa menambah produk.');
-        window.location.href = 'produk.html';
+        window.location.href = '/dashboard/produk.html';
         return;
     }
 
@@ -296,7 +296,7 @@ async function initDashboardAddProduct(user) {
             alert('Gagal menambah produk: ' + error.message);
         } else {
             alert('Produk berhasil ditambahkan ke katalog!');
-            window.location.href = 'produk.html';
+            window.location.href = '/dashboard/produk.html';
         }
     });
 }
@@ -383,7 +383,7 @@ async function initDashboardAddArticle(user) {
             alert('Gagal menerbitkan artikel: ' + error.message);
         } else {
             alert('Artikel berhasil diterbitkan ke Beranda!');
-            window.location.href = 'artikel.html';
+            window.location.href = '/dashboard/artikel.html';
         }
     });
 }
