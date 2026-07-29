@@ -210,11 +210,45 @@ window.mleseDB = {
             }
             return res;
         } else {
-            let query = supabaseClient.from('umkm').select('*').eq('status', 'approved');
-            if (kadusFilter) {
-                query = query.eq('kadus', kadusFilter);
+            let { data, error } = await supabaseClient.from('umkm').select('*').eq('status', 'approved');
+            
+            // Auto-seeding: jika tabel UMKM di Supabase kosong, masukkan data bawaan secara otomatis
+            if (!error && (!data || data.length === 0) && !kadusFilter) {
+                const { data: allData } = await supabaseClient.from('umkm').select('id');
+                if (!allData || allData.length === 0) {
+                    const defaultItems = (window.productsData || []).map(item => ({
+                        id: item.id,
+                        user_id: null,
+                        title: item.title,
+                        owner: item.owner,
+                        description: item.description,
+                        address: item.address,
+                        kadus: item.kadus,
+                        drive_link: item.drive_link || '#',
+                        maps_link: item.maps_link || '#',
+                        wa_link: item.wa_link || '#',
+                        image: item.image,
+                        status: 'approved'
+                    }));
+                    
+                    if (defaultItems.length > 0) {
+                        const { error: seedError } = await supabaseClient.from('umkm').insert(defaultItems);
+                        if (!seedError) {
+                            // Ambil data kembali setelah berhasil seeding
+                            const refetched = await supabaseClient.from('umkm').select('*').eq('status', 'approved');
+                            data = refetched.data;
+                            error = refetched.error;
+                        }
+                    }
+                }
             }
-            return await query;
+
+            if (error) return { data: null, error };
+            
+            if (kadusFilter) {
+                data = data.filter(p => p.kadus == kadusFilter);
+            }
+            return { data, error: null };
         }
     },
 
