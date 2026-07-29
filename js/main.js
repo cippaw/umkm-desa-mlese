@@ -94,7 +94,7 @@ async function initHomepage() {
                     <div class="p-4 flex flex-col flex-grow">
                         <h4 class="font-bold text-gray-800 dark:text-white line-clamp-1">${product.name}</h4>
                         <p class="text-xs text-gray-500 dark:text-gray-450 mt-1 line-clamp-2">${product.description || 'Kualitas terjamin asli desa.'}</p>
-                        <a href="detail.html?id=${product.umkm_id}" class="mt-4 text-xs font-semibold text-red-650 hover:text-red-750 transition-colors">Lihat Penjual ➔</a>
+                        <a href="/detail.html?id=${product.umkm_id}" class="mt-4 text-xs font-semibold text-red-650 hover:text-red-750 transition-colors">Lihat Penjual ➔</a>
                     </div>
                 </div>
             `;
@@ -116,8 +116,8 @@ async function initHomepage() {
                     <div class="p-5 flex flex-col flex-grow">
                         <h4 class="font-bold text-gray-800 dark:text-white line-clamp-2 hover:text-red-650 transition-colors cursor-pointer">${art.title}</h4>
                         <p class="text-xs text-gray-500 mt-2"><i class="fa-solid fa-user"></i> Oleh: ${art.author} | <i class="fa-solid fa-calendar"></i> ${new Date(art.created_at).toLocaleDateString('id-ID')}</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 line-clamp-3">${art.content}</p>
-                        <a href="artikel.html" class="mt-4 text-red-600 dark:text-red-500 text-xs font-bold hover:text-red-750 mt-auto inline-block">Baca Selengkapnya ➔</a>
+                        <p class="text-sm text-gray-650 dark:text-gray-300 mt-3 line-clamp-3">${art.content}</p>
+                        <a href="/artikel.html" class="mt-4 text-red-600 dark:text-red-500 text-xs font-bold hover:text-red-750 mt-auto inline-block">Baca Selengkapnya ➔</a>
                     </div>
                 </div>
             `;
@@ -172,7 +172,7 @@ async function initCatalogPage() {
                                 </ul>
 
                                 <div class="mt-5 flex flex-wrap gap-2 justify-between items-center border-t border-gray-50 dark:border-slate-850 pt-4">
-                                    <a href="detail.html?id=${item.id}" class="px-5 py-2.5 bg-red-600 hover:bg-red-750 text-white font-semibold text-xs rounded-lg transition-colors">
+                                    <a href="/detail.html?id=${item.id}" class="px-5 py-2.5 bg-red-600 hover:bg-red-750 text-white font-semibold text-xs rounded-lg transition-colors">
                                         Detail Profil Usaha ➔
                                     </a>
                                     <div class="flex gap-2">
@@ -221,14 +221,14 @@ async function initDetailPage() {
     const umkmId = params.get('id');
     
     if (!umkmId) {
-        window.location.href = 'umkm.html';
+        window.location.href = '/umkm.html';
         return;
     }
 
     const { data: item, error } = await window.mleseDB.getUMKMDetail(umkmId);
     if (error || !item) {
         alert('Data UMKM tidak ditemukan.');
-        window.location.href = 'umkm.html';
+        window.location.href = '/umkm.html';
         return;
     }
 
