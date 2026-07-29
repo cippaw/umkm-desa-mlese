@@ -14,7 +14,9 @@ if (SUPABASE_URL.includes('YOUR_') || SUPABASE_ANON_KEY.includes('YOUR_')) {
 } else {
     try {
         if (typeof supabase !== 'undefined') {
-            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            const cleanedUrl = SUPABASE_URL.trim().replace(/\/$/, "");
+            const cleanedKey = SUPABASE_ANON_KEY.trim();
+            supabaseClient = supabase.createClient(cleanedUrl, cleanedKey);
         } else {
             isDemoMode = true;
             console.error("Supabase SDK gagal dimuat. Beralih ke Mode Demo.");
