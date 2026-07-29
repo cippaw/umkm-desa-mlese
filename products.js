@@ -9,11 +9,9 @@ const products = [
         productsList: "Keripik Belut Gurih, Keripik Belut Pedas",
         address: "Dukuh Mlese RT 01 / RW 01, Wilayah Kadus 1, Desa Mlese",
         image: "assets/keripik_belut.jpg",
-        links: {
-            catalog: "#",
-            maps: "#",
-            whatsapp: "https://wa.me/6281234567890?text=Halo%20UMKM%20Keripik%20Belut,%20saya%20tertarik%20untuk%20memesan%20produk%20Anda."
-        }
+        drive_link: "#",
+        maps_link: "#",
+        wa_link: "https://wa.me/6281234567890?text=Halo%20UMKM%20Keripik%20Belut,%20saya%20tertarik%20untuk%20memesan%20produk%20Anda."
     },
     {
         id: "umkm-jenang",
@@ -25,11 +23,9 @@ const products = [
         productsList: "Jenang Ayu, Dodol Jawa, Wajik Ketan, Trasikan, Kue Tradisional",
         address: "Dusun Birin, Desa Mlese, Kecamatan Gantiwarno, Kabupaten Klaten.",
         image: "assets/jenang_ayu.jpeg",
-        links: {
-            catalog: "https://s.id/KatalogProdukTokoOlehOlehBuSiswo",
-            maps: "https://maps.app.goo.gl/hqvZ7y4yVPvKwQ8B7",
-            whatsapp: "https://wa.me/6281584545086?text=Halo%20Toko%20Jenang%20Ayu%20'Bu%20Siswo',%20saya%20tertarik%20untuk%20memesan%20produk%20jenang%20ayu%20Ibu."
-        }
+        drive_link: "https://s.id/KatalogProdukTokoOlehOlehBuSiswo",
+        maps_link: "https://maps.app.goo.gl/hqvZ7y4yVPvKwQ8B7",
+        wa_link: "https://wa.me/6281584545086?text=Halo%20Toko%20Jenang%20Ayu%20'Bu%20Siswo',%20saya%20tertarik%20untuk%20memesan%20produk%20jenang%20ayu%20Ibu."
     },
     {
         id: "umkm-karak",
@@ -41,11 +37,9 @@ const products = [
         productsList: "Karak Original, Karak Bawang, Karak Mentah, Karak Siap Goreng",
         address: "Dusun Birin, Desa Mlese, Kecamatan Gantiwarno, Kabupaten Klaten.",
         image: "assets/karak_birin.jpeg",
-        links: {
-            catalog: "https://s.id/KatalogProdukKarakBuSuranti",
-            maps: "https://maps.app.goo.gl/9ePvGzjY3xSW3nQVA",
-            whatsapp: "https://wa.me/6287827559044?text=Halo%20UMKM%20Karak%20Gurih%20Tanpa%20Boraks%20Bu%20Suranti,%20saya%20tertarik%20untuk%20memesan%20produk%20karak%20Anda."
-        }
+        drive_link: "https://s.id/KatalogProdukKarakBuSuranti",
+        maps_link: "https://maps.app.goo.gl/9ePvGzjY3xSW3nQVA",
+        wa_link: "https://wa.me/6287827559044?text=Halo%20UMKM%20Karak%20Gurih%20Tanpa%20Boraks%20Bu%20Suranti,%20saya%20tertarik%20untuk%20memesan%20produk%20karak%20Anda."
     },
     {
         id: "umkm-jamu",
@@ -57,11 +51,9 @@ const products = [
         productsList: "Beras Kencur, Kunyit Asam, Jahe Merah Instan",
         address: "Dukuh Mlese RT 02 / RW 02, Wilayah Kadus 3, Desa Mlese",
         image: "assets/jamu_mlese.jpg",
-        links: {
-            catalog: "#",
-            maps: "#",
-            whatsapp: "https://wa.me/6283123456789?text=Halo%20UMKM%20Jamu%20Mlese%20Segar,%20saya%20tertarik%20untuk%20memesan%20produk%20jamu%20Anda."
-        }
+        drive_link: "#",
+        maps_link: "#",
+        wa_link: "https://wa.me/6283123456789?text=Halo%20UMKM%20Jamu%20Mlese%20Segar,%20saya%20tertarik%20untuk%20memesan%20produk%20jamu%20Anda."
     }
 ];
 
@@ -71,4 +63,3 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     window.productsData = products;
 }
-
